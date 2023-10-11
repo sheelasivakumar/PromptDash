@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    <style>
+        body{
+            background-color: #212121;
+            font-family: monospace;
+        }
+        input{
+            border:0.2px solid black;
+            outline:none;
+            border-radius: 2px;
+            padding: 3px;
+            padding-left: 8px;
+            font-family: monospace;
+        }
+        input:focus {
+            outline: 0.5px solid rgb(10, 4, 4);
+        }
+        textarea{
+            border: 0.2px solid black;
+            
+        }
+        .addPrompt{
+            display: flex;
+            flex-direction: column;
+            height: 220px;
+            align-items: center;
+        }
+        .adddisplay{
+          margin: 10px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
+        #prompt_title{
+            width: 90%;
+            height: 25px;
+            box-shadow: #212121;
+        }
+        #prompt{
+            width:90%;
+            height:70px;
+            border-radius: 2px;
+            padding-left: 8px;
+            resize: none;
+            overflow: hidden;
+            outline: none;
+            border: 0.2px solid black;
+            box-shadow: #212121;
+        }
+        #prompt:focus{
+            outline: 0.5px solid rgb(10, 4, 4);
+        }
+        #category{
+            width: 92%;
+            height: 20px;
+            font-family: monospace;
+            outline: none;
+            border-radius: 2px;
+            border: 0.5px solid black;
+            box-shadow: #212121;
+        }
+        #category:focus{
+            outline: 0.5px solid rgb(10, 4, 4);
+        }
+        .promptaddbtn{
+            display:flex;
+            width:100%;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .promptaddbtn button{
+            background-color: white;
+            width: 80px;
+            height: 30px;
+            outline: none;
+            border: none;
+            margin: 10px;
+            border-radius: 2px;
+            font-family: monospace;
+        }
+        .btn{
+            width: 100px;
+        }
+        #successMessage{
+            position: absolute;
+            top: 180px;
+            z-index: 10;
+            font-weight: bold;
+            color: white;
+            height:auto;
+            width: auto;
+            padding: 5px;
+            text-align: center;
+        }
+        .success-message {
+            background-color: #202020;
+            border: 0.2px solid #454545;
+            box-shadow: 1px #454545;
+            border-radius: 2px;
+            transition: all 0.3s ease; 
+        }
+        @media screen and  (min-width: 769px) {
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .addPrompt{
+                display: flex;
+                flex-direction: column;
+                height: 600px;
+                align-items: center;
+                justify-content: center;
+                width: 800px;
+                background-color: #313131;
+                border-radius: 3px;
+            }
+            #prompt_title{
+            
+                margin-bottom: 10px;
+                height: 30px;
+            }
+            #prompt{
+               height:150px;
+               margin-bottom: 10px;
+               max-height: 150px; 
+               overflow-y:scroll;
+            }
+            #category{
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="addPrompt" id="addPrompt"> 
+        <div id="successMessage" style="color: white;"></div>
+        <div class="adddisplay">
+            
+            <input type="text" id="prompt_title" placeholder="Title" title="Enter title"><br>
+           
+            <textarea id="prompt" placeholder="Enter prompt..."></textarea><br>
+            
+            <select id="category" title="category">
+                <option value="none" selected disabled hidden>choose category</option>
+                <option value="Academic writing">Academic writing</option>
+                <option value="Bypass & Personas">Bypass & Personas</option>
+                <option value="Education & learning">Education & learning</option>
+                <option value="Expert/Consultant">Expert/Consultant</option>
+                <option value="Fun & Games">Fun & Games</option>
+                <option value="Fitness, Nutrition, & Health">Fitness, Nutrition, & Health</option>
+                <option value="Fiction Writing">Fiction Writing</option>
+                <option value="Music">Music</option>
+                <option value="Nonfiction Writing">Nonfiction Writing</option>
+                <option value="Other">Other</option>
+                <option value="Philosophy & Logic">Philosophy & Logic</option>
+                <option value="Speeches & Technology">Speeches & Technology</option>
+                <option value="Social Media & Blogging">Social Media & Blogging</option>
+                <option value="Travel">Travel</option>
+                <option value="Therapy & Life-help">Therapy & Life-help</option>
+            </select><br>
+            <div class="promptaddbtn">
+                <div class="btn">
+                    <button type="submit" id="clearall" title="Clear prompt">Clear all</button>
+                </div>
+                <div class="btn">
+                    <button type="submit" id="addprompt" title="Save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="addprompt.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+    "manifest_version" : 3,
+    "name" : "aaTry02",
+    "version" : "1.0",
+    "description" : "Working on Google Signin",
+    "action" : {
+        "default_title" : "I can",
+        "default_path":"popup.html"
+    },
+    "content_scripts" : [
+        {
+            "matches" : ["<all_urls>"],
+            "js" : ["app.js"]
+        }
+    ],
+    "background" : {
+        "service_worker" : "background.js"
+    },
+    "permissions":[
+        "sidePanel","identity","storage"
+    ],
+    "side_panel":{
+        "default_path" : "popup.html"
+    },
+    "oauth2": {
+        "client_id" : "326565740815-jpcrthgav7a060eq2g26skiku05q2ufe.apps.googleusercontent.com",
+        "scopes" : ["https://www.googleapis.com/auth/userinfo.profile","https://www.googleapis.com/auth/userinfo.email"]
+    },
+    "web_accessible_resources":[
+        {
+            "resources" : ["popup.html","home.html","edit.html"],
+            "matches" : ["<all_urls>"]
+        }
+    ]
+}

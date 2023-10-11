@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Dash</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            background-color: #212121;
+            color: white;
+        }
+        .signin{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30%;
+            flex-direction: column;
+        }
+        .show{
+            margin: 5px;
+            display: none;
+            width: 375px;
+            height: 510px;
+            flex-direction: column;
+        }
+        .signdiv{
+            display: none;
+        }
+        .signin button{
+            width: 100px;
+            height: 50px;
+        }
+        .Header{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 40px;
+            margin-top: 3px;
+        }
+        .name{
+            display: flex;
+        }
+        .user-name{
+            margin-left: 10px;
+            display: flex;
+            flex-direction: row;
+            font-size: 10px;
+            width: 290px;
+        }
+        .user{
+            margin-top: 12px;
+            margin-left: 50px;
+            width: 25px;
+            position: relative;
+        }
+        .icon{
+            width: 30px;
+            height: 30px;
+            margin: 0px;
+        }
+        .icon img{
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            margin-top: -5px;
+            cursor: pointer;
+        }
+        .logoutul{
+            border: 0.2px solid #3d3d3d;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            margin-left: -50px;
+            list-style: none;
+            height: 20px;
+            padding: 10px;
+            width: 50px;
+            display: none;
+            background-color:black;
+            border-radius: 2px;
+        }
+        .logoutul li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logoutul li button{
+            flex: 1;
+            background-color: black;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: white;
+        }
+        .content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 350px;
+            padding: 5px;
+            height: 140px;
+            margin: 10px;
+            margin-bottom: 0;
+        }
+        .center{
+            width: 310px;
+            margin-top: 10px;
+            height: 36px;
+            display: flex;
+        }
+        .center button{
+            flex: 1;
+            border-radius: 4px;
+            outline: none;
+            border: none;
+            background-color: #2B2B2B;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+        }
+        .add{
+            color: rgba(255, 255, 255, 0.70);
+        }
+        .add i{
+            color:rgba(255, 255, 255, 0.70);
+            background-color: #2B2B2B;
+            font-size: 11px;
+            padding-right: 10px;
+        }
+        .searchinput{
+            flex:1;
+            display: flex;
+            background-color: #2B2B2B;
+            border-radius: 20px;
+            width:280px;
+            /* margin-top: 10px; */
+            height: 36px;
+        }
+        .searchbtn{
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .searchinput .searchbtn i{
+            color:rgba(255, 255, 255, 0.70);
+            font-size: 14px;
+            height:12px;
+            width: 10px;
+        }
+        .searchinput input{
+            height:30px;
+            width:190px;
+            margin-left: 0;
+            border: none;
+            outline: none;
+            color: white;
+            background-color: #2B2B2B;
+        }
+        .category{
+            display: flex;
+            flex-direction: column;
+            width: 80px;
+            border-left: 0.2px solid #212121 ;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .option{
+            width:80px;
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .category ul{
+            list-style: none;
+            background-color: #212121;
+            color: white;
+        }
+        .ul{
+            position: absolute;
+            height: 380px;
+            width: 180px;
+            border: 0.1px solid #3d3d3d;
+            margin-left: -170px;
+            margin-top: 400px;
+            align-items: center;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            display: none;
+        }
+        .ul li{
+            padding-top: 5px;
+            padding-bottom: 2.5px;
+            margin-left: -30px;
+            cursor: pointer;
+        }
+        .ul li:hover{
+            background-color: black;
+        }
+        .mode{
+            margin-left: 190px;
+            display: flex;
+            flex-direction: row;
+            height: 30px;
+        }
+        .mode p{
+            margin-top: 7px;
+        }
+        .result{
+            width: 100%;
+            height:25px;
+        }
+        .headline{
+            display: flex;
+            margin-left: 9px;
+            width: 360px;
+        }
+        .headline button{
+            height: 30px;
+            flex: 1;
+            color: white;
+            background-color: #2B2B2B;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            cursor: pointer;
+        }
+        .pinnedBtn{
+            margin-top: 6px;
+        }
+        .pinnedBtn button{
+            height: 30px;
+            color: white;
+            background-color: #2B2B2B;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            cursor: pointer;
+        }
+        .output{
+            flex-direction: column;
+            align-items: center;
+            display: none;
+        }
+        .display{
+            margin-top: 3px;
+            margin-left: 9px;
+            width: 360px;
+            height: 230px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            border-left: 1px solid #3d3d3d;
+            border-right: 1px solid #3d3d3d;
+            border-bottom: 1px solid #3d3d3d;
+        }
+        .pinnedprompt{
+            display: none;
+            flex-direction: column;
+            height: 230px;
+            width: 360px;
+            margin-top: 3px;
+            align-items: center;
+            margin-left: 9px;
+            justify-content: center;
+            border-left: 1px solid #3d3d3d;
+            border-right: 1px solid #3d3d3d;
+            border-bottom: 1px solid #3d3d3d;
+        }
+        .one{
+            display: flex;
+            flex-direction: column;
+            margin-top: 4px;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            background-color:#2B2B2B;
+            border-radius: 4px;
+            width: 310px;
+            padding:12px;
+            height: 70px;
+        }
+        .title{
+            width:100%;
+            height: 32px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+        .title p{
+            width: 100px;
+            color: white;
+            margin-top: 2px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .prompt{
+            height: 35px;
+            border-radius: 4px;
+            color: white;
+            font-size: 13px;
+            overflow: hidden;
+            /* position: relative; */
+            padding-top: 2px;
+            text-wrap: nowrap;
+            /* padding-left: 3px; */
+        }
+        .text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+        }
+        .prompt:hover {
+            background-color: black;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            overflow: visible;
+            z-index: 1; 
+            position: relative;
+        }
+        .prompt_category{
+            margin-top: -6px;
+            height: 20px;
+            color: white;
+            font-size: 8px;
+        }
+        .btns button{
+            /* margin-right: 3px; */
+            border:none;
+            cursor: pointer;
+            background-color: #2B2B2B;
+        }
+        .disp i{
+            background-color: #2B2B2B;
+            color:white;
+            margin:0;
+            padding: 0;
+            font-size: 8px;
+            border: 0;
+        }
+        #slash{
+            background:none;
+            margin-left:-10px; 
+            margin-top:-30px;
+            font-size: 9px;
+        }
+        #search_pagination {
+            margin-top: 20px;
+            /* margin-left: 15px; */
+            width: 100%;
+            text-align: center;
+            display: none;
+            justify-content: space-between;
+        }
+
+        #search_pagination button {
+            background-color: #2B2B2B;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        #search_pagination button:hover {
+            background-color: #fff;
+            color:black;
+            border:0.5px solid #2B2B2B;
+        }
+
+        #search_pagination button.active {
+            background-color: #2B2B2B;
+        }
+        #pinned_pagination {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            display: none;
+            justify-content: space-between;
+        }
+        #pinned_pagination button {
+            background-color: #2B2B2B;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        #pinned_pagination button:hover {
+            background-color: #fff;
+            color:black;
+            border:0.5px solid #2B2B2B;
+        }
+
+        #pinned_pagination button.active {
+            background-color: #2B2B2B;
+        }
+        .Edit-prompt{
+            position:absolute;
+            width: 300px;
+            height: 200px;
+            top: 50%;
+            margin-left: 40px;
+            background-color: #3d3d3d;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            border-radius: 4px;
+            display:none;
+            z-index: 1;
+        }
+        .changetext{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        #editTextInput{
+            height: 80px;
+            width: 90%;
+            border-radius: 2px;
+            padding-left: 8px;
+            resize: none;
+            overflow: hidden;
+            outline: none;
+            border: none;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .changetext button{
+            height: 30px;
+            width: 70px;
+        }
+        .changebtns{
+            margin-left: 20px;
+        }
+        #errorMessage {
+            color: red;
+            font-weight: bold;
+            position: absolute;
+            top:80%;
+            left: 40%;
+            z-index: 10;
+            height:auto;
+            width: auto;
+            padding: 5px;
+            text-align: center;
+        }
+        #successMessage{
+            position: absolute;
+            top:80%;
+            left: 40%;
+            z-index: 10;
+            font-weight: bold;
+            color: white;
+            height:auto;
+            width: auto;
+            padding: 5px;
+            text-align: center;
+        }
+        #resultPageBtn{
+            background-color: black;
+            border: 1px solid #3d3d3d;
+        }
+        .output1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .starting{
+            text-align: center;
+            background-color: #2B2B2B;
+            border-radius: 2px;
+            box-shadow: #2B2B2B;
+            color: rgb(224, 224, 224);
+            height: 280px;
+            width: 350px;
+        }
+        .starting p{
+           margin-top: 80px;
+        }
+        .inputcls{
+            margin-top: 2px;
+        }
+        .success-message {
+            background-color: #202020;
+            border: 0.2px solid #454545;
+            box-shadow: 1px #454545;
+            border-radius: 2px;
+            transition: all 0.3s ease; 
+        }
+        @media screen and (min-height: 500px){
+            .show{
+                width: 375px;
+                height: 510px;
+            }
+        }
+        @media screen and (min-height: 450px){
+            .show{
+                height: 460px;
+            }
+            .starting{
+                margin-top: 10px;
+                height: 240px;
+            }
+            .Header{
+                width: 355px;
+                height: 35px;
+            }
+            .content{
+                width: 350px;
+                padding: 5px;
+                height: 120px;
+            }
+            .display{
+                width: 360px;
+                height: 220px;
+            }
+            .pinnedprompt{
+                height: 220px;
+                width: 360px;
+            }
+            .one{
+                width: 300px;
+                padding:12px;
+                height: 65px;
+            }
+            .title{
+                height: 32px;
+            }
+            .prompt{
+                height: 28px;
+            }
+            .prompt_category{
+                margin-top: -6px;
+                height: 15px;
+            }
+            #search_pagination {
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
+                display: none;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signin" id="signdiv">
+        <h1>Welcome</h1>
+        <div class="signinBtn">
+            <button id="signin">Signin</button>
+        </div>
+    </div>
+    <div class="show" id="show">
+        <div class="Header">
+            <div class="name">
+                <div class="user-name">
+                    <div>
+                        <h3>Hello,&nbsp;</h3>
+                    </div>
+                    <div><h3 id="name"></h3></div>
+                </div>
+            </div>
+            <div class="user" id="userprofile">
+                <div class="icon">
+                    <img id="profileImg" alt="Profile">
+                </div>
+                <ul class="logoutul">
+                    <li><button id="logout">Logout</button></li>
+                </ul>  
+            </div>
+        </div>
+        <div class="content">
+            <div class="center">
+                <button class="add" id="add"><i class="fas fa-plus"></i>Add Prompt</button>
+            </div>
+
+            <div class="center">
+                <div class="searchinput">
+                    <button id="searchbtn" class="searchbtn"><i class="fas fa-search search-icon"></i></button>
+                    <input type="text" id="searchprompt" placeholder="Search..." class="inputcls">
+                    <div class="category">
+                        <div class="option"><span id="selectedCat">All&nbsp;</span><span class="arrow">&nbsp;&#9660;</span></div> 
+                        <ul class="ul">
+                            <li>All</li>
+                            <li>Academic writing</li>
+                            <li>Bypass & Personas</li>
+                            <li>Education & learning</li>
+                            <li>Expert/Consultant</li>
+                            <li>Fun & Games</li>
+                            <li>Fitness, Nutrition, & Health</li>
+                            <li>Fiction Writing</li>
+                            <li>Music</li>
+                            <li>Nonfiction Writing</li>
+                            <li>Other</li>
+                            <li>Philosophy &amp; Logic</li>
+                            <li>Speeches &amp; Technology</li>
+                            <li>Social Media &amp; Blogging</li>
+                            <li>Travel</li>
+                            <li>Therapy &amp; Life-help</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mode">
+                <p>My prompts</p>  
+                <input type="checkbox" id="private">
+            </div>
+        </div>
+        <div class="output1">
+            <div class="starting" id="starting">
+                <p id="startingText">Add your own prompt<br> or search from 1000+ prompts</p>
+            </div>
+            <div class="output" id="output">
+                <div class="result">
+                    <div class="headline">
+                            <button id="resultPageBtn">Search results</button>
+                            <button id="pinPageBtn">My pins</button>
+                    </div>
+                </div>
+                <div class="pinnedprompt" id="pinnedprompt"></div>
+                <div class="display" id="displayResult">
+                    <p id="noResults"></p>
+                </div>
+        
+                <div id="search_pagination">
+                    <button id="search-prev-btn">Prev</button>
+                    <div id="search-page-buttons"></div>
+                    <button id="search-next-btn">Next</button>
+                </div>
+                <div id="pinned_pagination">
+                    <button id="pinned-prev-btn">Prev</button>
+                    <div id="pinned-page-buttons"></div>
+                    <button id="pinned-next-btn">Next</button>
+                </div>
+            </div>
+        </div>
+        <div id="successMessage" style="color: white;"></div>
+        <div id="errorMessage" style="color: red;"></div>
+    </div>
+    <script src="app.js"></script>
+    <script src="searchprompt.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
+
+
+
+
+
+

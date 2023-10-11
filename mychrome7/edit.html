@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <style>
+        body{
+            background-color: #212121;
+        }
+        input{
+            border:none;
+            outline:none;
+            border-radius: 2px;
+            padding: 3px;
+            padding-left: 8px;
+        }
+        .addPrompt{
+            display: flex;
+            flex-direction: column;
+            height: 220px;
+            align-items: center;
+        }
+        .adddisplay{
+          margin: 10px;
+        }
+        #edit_title{
+            margin-top: 20px;
+            width: 350px;
+            height: 30px;
+            margin-left: 30px;
+        }
+        #edit_prompt{
+            margin-top: 20px;
+            margin-left: 30px; 
+            width:350px;
+            height:60px;
+            border-radius: 2px;
+            padding-left: 8px;
+            resize: none;
+            overflow: hidden;
+            outline: none;
+            border: none;
+        }
+        #edit_category{
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 360px;
+            height: 20px;
+        }
+        .promptaddbtn{
+            display:flex;
+            width:400px;
+            justify-content: center;
+            align-items: center;
+        }
+        .promptaddbtn button{
+            background-color: white;
+            width: 70px;
+            height: 30px;
+            outline: none;
+            border: none;
+            margin: 10px;
+            border-radius: 2px;
+        }
+        .btn{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="addPrompt" id="addPrompt"> 
+        <div class="adddisplay">
+            <input type="text" id="edit_title" placeholder="Title" title="Enter title"><br>
+            <textarea id="edit_prompt" placeholder="Enter prompt"></textarea><br>
+            <select id="edit_category" title="category">
+                <option value="none" selected disabled hidden>choose category</option>
+                <option value="Academic writing">Academic writing</option>
+                <option value="Bypass & Personas">Bypass & Personas</option>
+                <option value="Education & learning">Education & learning</option>
+                <option value="Expert/Consultant">Expert/Consultant</option>
+                <option value="Fun & Games">Fun & Games</option>
+                <option value="Fitness, Nutrition, & Health">Fitness, Nutrition, & Health</option>
+                <option value="Fiction Writing">Fiction Writing</option>
+                <option value="Music">Music</option>
+                <option value="Nonfiction Writing">Nonfiction Writing</option>
+                <option value="Other">Other</option>
+                <option value="Philosophy & Logic">Philosophy & Logic</option>
+                <option value="Speeches & Technology">Speeches & Technology</option>
+                <option value="Social Media & Blogging">Social Media & Blogging</option>
+                <option value="Travel">Travel</option>
+                <option value="Therapy & Life-help">Therapy & Life-help</option>
+            </select><br>
+            <div class="promptaddbtn">
+                <div class="btn">
+                    <button type="submit" id="clearall" title="Clear prompt">Clear all</button>
+                </div>
+                <div class="btn">
+                    <button type="submit" id="addprompt" title="Save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="edit.js"></script>
+    <script src="searchprompt.js"></script>
+</body>
+</html>

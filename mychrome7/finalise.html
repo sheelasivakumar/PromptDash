@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Dash</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            width: 350px;
+            background-color: #212121;
+            color: white;
+        }
+        .show{
+            display: none;
+        }
+        .signdiv{
+            display: none;
+        }
+        .Header{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 40px;
+            margin-top: 3px;
+        }
+        .name{
+            display: flex;
+        }
+        .user-name{
+            margin-left: 10px;
+            display: flex;
+            flex-direction: row;
+            font-size: 10px;
+            width: 250px;
+        }
+        .user{
+            margin-top: 12px;
+            margin-left: 50px;
+            width: 25px;
+            position: relative;
+        }
+        .icon i {
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .logoutul{
+            border: 0.2px solid #3d3d3d;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            margin-left: -50px;
+            list-style: none;
+            height: 10px;
+            padding: 10px;
+            width: 50px;
+            display: none;
+        }
+        .logoutul li{
+            cursor: pointer;
+        }
+        .content{
+            margin-left: 25px;
+            margin-right: 20px;
+            /* height: 20%; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+        }
+        .center{
+            width: 90%;
+            margin-top: 10px;
+            height: 36px;
+            display: flex;
+        }
+        .center button{
+            flex: 1;
+            border-radius: 4px;
+            outline: none;
+            border: none;
+            background-color: #2B2B2B;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+        }
+        .add{
+            color: rgba(255, 255, 255, 0.70);
+        }
+        .add i{
+            color:rgba(255, 255, 255, 0.70);
+            background-color: #2B2B2B;
+            font-size: 11px;
+            padding-right: 10px;
+        }
+        .searchinput{
+            flex:1;
+            display: flex;
+            background-color: #2B2B2B;
+            border-radius: 20px;
+            width:280px;
+            margin-top: 10px;
+            height: 36px;
+        }
+        .searchbtn{
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .searchinput .searchbtn i{
+            color:rgba(255, 255, 255, 0.70);
+            font-size: 14px;
+            height:12px;
+        }
+        .searchinput input{
+            height:30px;
+            width:180px;
+            margin-left: 0;
+            border: none;
+            outline: none;
+            color: white;
+            background-color: #2B2B2B;
+        }
+        .category{
+            display: flex;
+            flex-direction: column;
+            width: 90px;
+            border-left: 0.2px solid ;
+            margin-left: -12px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .option{
+            width:80px;
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .category ul{
+            list-style: none;
+            background-color: #212121;
+            color: white;
+        }
+        .ul{
+            position: absolute;
+            height: 380px;
+            width: 180px;
+            border: 0.1px solid #3d3d3d;
+            margin-left: -170px;
+            margin-top: 400px;
+            align-items: center;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            display: none;
+        }
+        .ul li{
+            padding-top: 5px;
+            padding-bottom: 2.5px;
+            margin-left: -30px;
+            cursor: pointer;
+        }
+        .ul li:hover{
+            background-color: black;
+        }
+        .mode{
+            margin-top: 10px;
+            margin-left: 190px;
+            display: flex;
+            flex-direction: row;
+        }
+        .result{
+            width: 100%;
+            height:40px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+        .headline{
+            margin-left: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .pinnedBtn{
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+        .display{
+            width: 290px;
+            height: 200px;
+            color: white;
+            display: flex;
+            margin-left: 10px;
+            flex-direction: column;
+        }
+        .one{
+            margin-top: 5px;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            background-color:#2B2B2B;
+            border-radius: 4px;
+            padding:12px;
+            width: 300px;
+            height: 80px;
+        }
+        .title{
+            width:100%;
+            height: 28px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+        .title p{
+            width: 100px;
+            color: white;
+            margin-top: 2px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .prompt{
+            height: 30px;
+            border-radius: 4px;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            overflow: hidden;
+            position: relative;
+            
+        }
+        .text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+        }
+        .prompt:hover {
+            background-color: black;
+            box-shadow: 0px 1px 1px 0px #2B2B2B;
+            overflow: visible;
+            z-index: 1; 
+            position: relative;
+        }
+        .prompt_category{
+            margin-top: -6px;
+            height: 20px;
+            color: white;
+            font-size: 10px;
+        }
+        .btns button{
+            margin-right: 6px;
+            border:none;
+            cursor: pointer;
+            background-color: #2B2B2B;
+        }
+        .disp i{
+            background-color: #2B2B2B;
+            color:white;
+            padding:1px;
+            font-size: 10px;
+        }
+        #pagination {
+            margin-top: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #pagination button {
+            background-color: #2B2B2B;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        #pagination button:hover {
+            background-color: #fff;
+            color:black;
+            border:0.5px solid #2B2B2B;
+        }
+
+        #pagination button.active {
+            background-color: #2B2B2B;
+        }
+    </style>
+</head>
+<body>
+    <div class="signin" id="signdiv">
+        <h1>Welcome, Please Signin</h1>
+        <button id="signin">Signin</button>
+    </div>
+    <div class="show" id="show">
+        <div class="Header">
+            <div class="name">
+                <div class="user-name">
+                    <div>
+                        <h3>Hello,</h3>
+                    </div>
+                    <div><h3 id="name"></h3></div>
+                </div>
+            </div>
+            <div class="user" id="userprofile">
+                <div class="icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <ul class="logoutul">
+                    <li><button id="logout">Logout</button></li>
+                </ul>  
+            </div>
+        </div>
+        <div class="content">
+            <div class="center">
+                <button class="add" id="add"><i class="fas fa-plus"></i>Add Prompt</button>
+            </div>
+
+
+
+
+              <!-- popup for Add Btn -->
+              <div class="addPrompt" id="addPrompt"> 
+                <input type="text" id="prompt_title" placeholder="title"><br>
+                <input type="text" id="prompt" placeholder="Enter prompt"><br>
+                <select id="category">
+                    <option value="none" selected disabled hidden>choose category</option>
+                    <option value="Academic writing">Academic writing</option>
+                    <option value="Bypass & Personas">Bypass & Personas</option>
+                    <option value="Education & learning">Education & learning</option>
+                    <option value="Expert/Consultant">Expert/Consultant</option>
+                    <option value="Fun & Games">Fun & Games</option>
+                    <option value="Fitness, Nutrition, & Health">Fitness, Nutrition, & Health</option>
+                    <option value="Fiction Writing">Fiction Writing</option>
+                    <option value="Music">Music</option>
+                    <option value="Nonfiction Writing">Nonfiction Writing</option>
+                    <option value="Other">Other</option>
+                    <option value="Philosophy & Logic">Philosophy & Logic</option>
+                    <option value="Speeches & Technology">Speeches & Technology</option>
+                    <option value="Social Media & Blogging">Social Media & Blogging</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Therapy & Life-help">Therapy & Life-help</option>
+                </select><br>
+                <div class="promptaddbtn">
+                    <button type="submit" id="clearall">clear all</button>
+                    <button type="submit" id="addprompt">save</button>
+                </div>
+            </div>
+
+            <!-- End of popup for Add prompt button -->
+
+            <div class="center">
+                <div class="searchinput">
+                    <button id="searchbtn" class="searchbtn"><i class="fas fa-search search-icon"></i></button>
+                    <input type="text" id="searchprompt" placeholder="Search..." class="inputcls">
+                    <div class="category">
+                        <div class="option"><span id="selectedCat">All</span><span class="arrow">&#9660;</span></div> 
+                        <ul class="ul">
+                            <li>All</li>
+                            <li>Academic writing</li>
+                            <li>Bypass & Personas</li>
+                            <li>Education & learning</li>
+                            <li>Expert/Consultant</li>
+                            <li>Fun & Games</li>
+                            <li>Fitness, Nutrition, & Health</li>
+                            <li>Fiction Writing</li>
+                            <li>Music</li>
+                            <li>Nonfiction Writing</li>
+                            <li>Other</li>
+                            <li>Philosophy & Logic</li>
+                            <li>Speeches & Technology</li>
+                            <li>Social Media & Blogging</li>
+                            <li>Travel</li>
+                            <li>Therapy & Life-help</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mode">
+                <p>private</p>
+                <input type="checkbox" id="private">
+            </div>
+        </div>
+
+
+        <div class="result">
+            <div class="headline">
+                <h3>Result</h3>
+                <div class="pinnedBtn">
+                    <button>Pinned</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="display" id="displayResult">
+
+        </div>
+
+        <div id="pagination">
+            <button id="prev-btn">Prev</button>
+            <div id="page-buttons"></div>
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script src="popup.js"></script>
+    <script src="searchprompt.js"></script>
+</body>
+</html>
